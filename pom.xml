@@ -6,7 +6,11 @@
 
   <groupId>xin.jerome</groupId>
   <artifactId>study</artifactId>
+  <packaging>pom</packaging>
   <version>1.0</version>
+  <modules>
+    <module>java-basic</module>
+  </modules>
 
   <name>study</name>
 
