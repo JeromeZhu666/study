@@ -11,6 +11,7 @@
   <modules>
     <module>java-basic</module>
     <module>data-structures</module>
+    <module>algorithms</module>
   </modules>
 
   <name>study</name>
