@@ -1,5 +1,6 @@
 package xin.jerome.study.datastructures.map;
 
+import xin.jerome.study.datastructures.map.impl.BinarySearchTreeMap;
 import xin.jerome.study.datastructures.map.impl.LikedListMap;
 
 /**
@@ -11,8 +12,14 @@ import xin.jerome.study.datastructures.map.impl.LikedListMap;
 public class TestMyMap {
 
     public static void main(String[] args) {
-        String word = "aaabbbbbf";
+        String word = "jjaaabbbbbfkknnn";
         LikedListMap<Character, Integer> charMap = new LikedListMap<>();
+        BinarySearchTreeMap<Character, Integer> binarySearchTreeMap = new BinarySearchTreeMap<>();
+        test(word, binarySearchTreeMap);
+        binarySearchTreeMap.preOrder();
+    }
+
+    private static void test(String word, MyMap<Character, Integer> charMap) {
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
             if(charMap.contains(c)) {
@@ -23,7 +30,9 @@ public class TestMyMap {
         }
         System.out.println("word length " + word.length());
         System.out.println("word has " + charMap.size() + " char.");
+        charMap.remove('j');
         System.out.println(charMap.get('b'));
+        System.out.println("word has " + charMap.size() + " char.");
     }
 
 }
