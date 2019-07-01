@@ -14,7 +14,7 @@ public class MyGenericArray<E> {
     /**
      * 无参构造函数，默认容量10
      */
-    public MyGenericArray(){
+    public MyGenericArray() {
         this(10);
     }
 
@@ -24,7 +24,7 @@ public class MyGenericArray<E> {
      * @param capacity 数组的容量
      */
     public MyGenericArray(int capacity) {
-        data = (E[])new Object[capacity];
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
@@ -59,7 +59,7 @@ public class MyGenericArray<E> {
      * 向指定位置添加元素
      *
      * @param index 添加到的位置
-     * @param e 添加的元素
+     * @param e     添加的元素
      */
     public void addToIndex(int index, E e) {
         if (size == getCapacity()) {
@@ -70,7 +70,7 @@ public class MyGenericArray<E> {
         }
 
         for (int i = size - 1; i >= index; i--) {
-            data[i+1] = data[i];
+            data[i + 1] = data[i];
         }
 
         data[index] = e;
@@ -110,6 +110,7 @@ public class MyGenericArray<E> {
 
     /**
      * 获取数组中的最后一个元素
+     *
      * @return 数组末尾的元素
      */
     public E getLast() {
@@ -118,6 +119,7 @@ public class MyGenericArray<E> {
 
     /**
      * 获取数组中的第一个元素
+     *
      * @return 数组头部元素
      */
     public E getFirst() {
@@ -128,7 +130,7 @@ public class MyGenericArray<E> {
      * 修改指定位置的元素
      *
      * @param index 要修改的位置
-     * @param e 修改的值
+     * @param e     修改的值
      */
     public void set(int index, E e) {
         if (index < 0 || index > size) {
@@ -181,8 +183,8 @@ public class MyGenericArray<E> {
         }
         data[size - 1] = null;
         size--;
-        if(size < getCapacity()/4 && getCapacity()/2 != 0)
-            resize(getCapacity()/2);
+        if (size < getCapacity() / 4 && getCapacity() / 2 != 0)
+            resize(getCapacity() / 2);
         return delValue;
     }
 
@@ -217,6 +219,20 @@ public class MyGenericArray<E> {
             return true;
         }
         return false;
+    }
+
+    /**
+     * 交换数组中的元素
+     *
+     * @param i 待交换的元素索引
+     * @param j 待交换的元素索引
+     */
+    public void swap(int i, int j) {
+        if (i < 0 || i > size || j < 0 || j > size)
+            throw new IllegalArgumentException("Index is illegal.");
+        E temp = data[i];
+        data[i] = data[j];
+        data[j] = temp;
     }
 
     /**
