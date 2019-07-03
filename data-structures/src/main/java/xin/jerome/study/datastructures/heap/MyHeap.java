@@ -26,6 +26,21 @@ public interface MyHeap<E> {
     E extractMax();
 
     /**
+     * 查看堆中最大的元素
+     *
+     * @return 最大的元素值
+     */
+    E findMax();
+
+    /**
+     * 将堆中最大的元素取出,并添加新的元素
+     *
+     * @param e 待添加的元素
+     * @return 堆中被替换的最大的元素
+     */
+    E replace(E e);
+
+    /**
      * 返回堆的大小
      */
     int size();

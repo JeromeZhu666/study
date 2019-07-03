@@ -24,6 +24,18 @@ public class MaxHeap<E extends Comparable<E>> implements MyHeap<E> {
         data = new MyGenericArray<>();
     }
 
+    /**
+     * Heapify 将一个数组堆化
+     *
+     * @param arr 待转化的数组
+     */
+    public MaxHeap(E[] arr) {
+        data = new MyGenericArray<>(arr);
+        // 从最后一个非叶子节点,进行下沉操作. 时间复杂度O(n)
+        for (int i = getParentIndex(arr.length - 1); i >= 0 ; i--)
+            siftDown(i);
+    }
+
     @Override
     public void add(E e) {
         // 首先将元素加入数组的末尾,保证第一个性质.
@@ -47,16 +59,33 @@ public class MaxHeap<E extends Comparable<E>> implements MyHeap<E> {
 
     @Override
     public E extractMax() {
-        if (data.getSize() == 0)
-            throw new IllegalArgumentException("Can't extractMax when heap is empty.");
-
+        // 查看当前堆中最大的元素
+        E e = findMax();
         // 先将最后一个元素和第一个元素交换位置
         data.swap(0, data.getSize() - 1);
         // 删除最后一个元素,满足第一个性质.
-        E e = data.deleteLast();
-        // 再将第一个元素下沉,满足第二的性质.
+        data.deleteLast();
+        // 再将第一个元素下沉,满足第二个性质.
         siftDown(0);
         return e;
+    }
+
+    @Override
+    public E findMax() {
+        // 如果当前堆为空,抛异常.
+        if (data.getSize() == 0)
+            throw new IllegalArgumentException("Can't extractMax when heap is empty.");
+        return data.get(0);
+    }
+
+    @Override
+    public E replace(E e) {
+        E max = findMax();
+        // 将最大元替换成新元素
+        data.set(0, e);
+        // 将第一个元素进行下沉,以满足第二个性质.
+        siftDown(0);
+        return max;
     }
 
     /**
@@ -74,7 +103,7 @@ public class MaxHeap<E extends Comparable<E>> implements MyHeap<E> {
                 maxChildIndex = getRightChildIndex(index);
             }
             // 如果当前节点比最大节点还要大,不用交换了已经平衡了.
-            if(data.get(index).compareTo(data.get(maxChildIndex))>0)
+            if (data.get(index).compareTo(data.get(maxChildIndex)) > 0)
                 break;
 
             // 否则进行交换
