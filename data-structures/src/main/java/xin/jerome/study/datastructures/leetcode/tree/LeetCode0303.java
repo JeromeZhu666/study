@@ -50,7 +50,7 @@ public class LeetCode0303 {
     /**
      * 获取索引[i,j]所有元素和
      */
-    public int sumRange2(int i, int j) {
+    public int sumRange2(int i, int j) { // 125 ms 42.9 MB 战胜 35.29 % 的 java 提交记录
         if (segmentTree == null) {
             throw new IllegalArgumentException("segmentTree is empty.");
         }
