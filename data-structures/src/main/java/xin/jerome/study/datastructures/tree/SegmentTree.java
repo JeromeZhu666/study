@@ -27,10 +27,7 @@ public class SegmentTree<E> {
 
     public SegmentTree(E[] arr, SegmentTreeRuler<E> ruler) {
         this.ruler = ruler;
-        data = (E[])new Object[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            data[i] = arr[i];
-        }
+        data = arr;
         tree = (E[])new Object[arr.length * 4];
         buildSegmentTree(0, 0, arr.length - 1);
     }
