@@ -32,8 +32,8 @@ public class QuickUnionOptimizeBySize implements MyUnionFind {
             return;
         }
 
-        if (sizes[pRoot] > sizes[qRoot]) {
-            // 如果集合 p 中的元素比集合 q 中的元素多,就将集合 p 合并到集合 q 中.
+        if (sizes[pRoot] < sizes[qRoot]) {
+            // 如果集合 p 中的元素比集合 q 中的元素少,就将集合 p 合并到集合 q 中.
             parents[pRoot] = qRoot;
             // 维护 sizes[qRoot] , 集合 q 中的元素增多了.
             sizes[qRoot] += sizes[pRoot];
