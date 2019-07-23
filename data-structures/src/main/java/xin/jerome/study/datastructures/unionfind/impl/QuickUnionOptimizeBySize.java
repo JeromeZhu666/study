@@ -12,7 +12,7 @@ public class QuickUnionOptimizeBySize implements MyUnionFind {
 
     private int[] parents;
     /**
-     * 用于存储集合中元素的个数
+     * 用于存储集合中元素的个数,sizes[i]表示元素 i 所在集合元素的个数.
      */
     private int[] sizes;
 
@@ -21,6 +21,7 @@ public class QuickUnionOptimizeBySize implements MyUnionFind {
         sizes = new int[size];
         for (int i = 0; i < parents.length; i++) {
             parents[i] = i;
+            sizes[i] = 1;
         }
     }
 
