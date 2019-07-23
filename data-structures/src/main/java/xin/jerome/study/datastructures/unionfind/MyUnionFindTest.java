@@ -5,6 +5,7 @@ import java.util.Random;
 import org.junit.Test;
 
 import xin.jerome.study.datastructures.unionfind.impl.QuickFindUnionFind;
+import xin.jerome.study.datastructures.unionfind.impl.QuickUnionOptimizeBySize;
 import xin.jerome.study.datastructures.unionfind.impl.QuickUnionUnionFind;
 
 /**
@@ -17,12 +18,14 @@ public class MyUnionFindTest {
 
     @Test
     public void testMyUnionFind() {
-        int size = 100000;
-        int m = 10000;
+        int size = 1000000;
+        int m = 100000;
         QuickFindUnionFind quickFindUnionFind = new QuickFindUnionFind(size);
         System.out.println("QuickFind: " + test(quickFindUnionFind, m) + " s.");
         QuickUnionUnionFind quickUnionUnionFind = new QuickUnionUnionFind(size);
-        System.out.println("QuickFind: " + test(quickUnionUnionFind, m) + " s.");
+        System.out.println("QuickUnion: " + test(quickUnionUnionFind, m) + " s.");
+        QuickUnionOptimizeBySize quickUnionOptimizeBySize = new QuickUnionOptimizeBySize(size);
+        System.out.println("QuickUnionBySize: " + test(quickUnionOptimizeBySize, m) + " s.");
     }
 
     /**
