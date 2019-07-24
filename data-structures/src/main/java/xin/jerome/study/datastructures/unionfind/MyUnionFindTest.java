@@ -4,10 +4,7 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import xin.jerome.study.datastructures.unionfind.impl.QuickFindUnionFind;
-import xin.jerome.study.datastructures.unionfind.impl.QuickUnionOptimizeByRank;
-import xin.jerome.study.datastructures.unionfind.impl.QuickUnionOptimizeBySize;
-import xin.jerome.study.datastructures.unionfind.impl.QuickUnionUnionFind;
+import xin.jerome.study.datastructures.unionfind.impl.QuickUnionOptimizeByPathCompression;
 
 /**
  * 测试 {@link MyUnionFind} 的功能
@@ -21,14 +18,16 @@ public class MyUnionFindTest {
     public void testMyUnionFind() {
         int size = 1000000;
         int m = 1000000;
-        QuickFindUnionFind quickFindUnionFind = new QuickFindUnionFind(size);
-        System.out.println("QuickFind: " + test(quickFindUnionFind, m) + " s.");
-        QuickUnionUnionFind quickUnionUnionFind = new QuickUnionUnionFind(size);
-        System.out.println("QuickUnion: " + test(quickUnionUnionFind, m) + " s.");
-        QuickUnionOptimizeBySize quickUnionOptimizeBySize = new QuickUnionOptimizeBySize(size);
-        System.out.println("QuickUnionBySize: " + test(quickUnionOptimizeBySize, m) + " s.");
-        QuickUnionOptimizeByRank quickUnionOptimizeByRank = new QuickUnionOptimizeByRank(size);
-        System.out.println("QuickUnionByRank: " + test(quickUnionOptimizeByRank, m) + " s.");
+        // QuickFindUnionFind quickFindUnionFind = new QuickFindUnionFind(size);
+        // System.out.println("QuickFind: " + test(quickFindUnionFind, m) + " s.");
+        // QuickUnionUnionFind quickUnionUnionFind = new QuickUnionUnionFind(size);
+        // System.out.println("QuickUnion: " + test(quickUnionUnionFind, m) + " s.");
+        // QuickUnionOptimizeBySize quickUnionOptimizeBySize = new QuickUnionOptimizeBySize(size);
+        // System.out.println("QuickUnionBySize: " + test(quickUnionOptimizeBySize, m) + " s.");
+        // QuickUnionOptimizeByRank quickUnionOptimizeByRank = new QuickUnionOptimizeByRank(size);
+        // System.out.println("QuickUnionByRank: " + test(quickUnionOptimizeByRank, m) + " s.");
+        QuickUnionOptimizeByPathCompression quickUnionPathCompression = new QuickUnionOptimizeByPathCompression(size);
+        System.out.println("QuickUnionByPathCompression: " + test(quickUnionPathCompression, m) + " s.");
     }
 
     /**
