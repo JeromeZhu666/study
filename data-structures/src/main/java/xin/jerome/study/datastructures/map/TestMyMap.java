@@ -1,5 +1,6 @@
 package xin.jerome.study.datastructures.map;
 
+import xin.jerome.study.datastructures.map.impl.AVLTreeMap;
 import xin.jerome.study.datastructures.map.impl.BinarySearchTreeMap;
 import xin.jerome.study.datastructures.map.impl.LikedListMap;
 
@@ -12,25 +13,26 @@ import xin.jerome.study.datastructures.map.impl.LikedListMap;
 public class TestMyMap {
 
     public static void main(String[] args) {
-        String word = "jjaaabbbbbfkknnn";
+        String word = "aaabbbbbccccdddddfkknnn";
         LikedListMap<Character, Integer> charMap = new LikedListMap<>();
         BinarySearchTreeMap<Character, Integer> binarySearchTreeMap = new BinarySearchTreeMap<>();
-        test(word, binarySearchTreeMap);
-        binarySearchTreeMap.preOrder();
+        AVLTreeMap<Character, Integer> AVLTreeMap = new AVLTreeMap<>();
+        test(word, AVLTreeMap);
+        System.out.println(AVLTreeMap.isBST());
+        System.out.println(AVLTreeMap.isBalance());
     }
 
     private static void test(String word, MyMap<Character, Integer> charMap) {
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if(charMap.contains(c)) {
+            if (charMap.contains(c)) {
                 charMap.set(c, charMap.get(c) + 1);
             } else {
                 charMap.put(c, 1);
             }
         }
         System.out.println("word length " + word.length());
-        System.out.println("word has " + charMap.size() + " char.");
-        charMap.remove('j');
+        // charMap.remove('j');
         System.out.println(charMap.get('b'));
         System.out.println("word has " + charMap.size() + " char.");
     }
