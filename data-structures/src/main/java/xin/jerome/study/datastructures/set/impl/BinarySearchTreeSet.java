@@ -4,13 +4,15 @@ import xin.jerome.study.datastructures.set.MySet;
 import xin.jerome.study.datastructures.tree.BinarySearchTree;
 
 /**
- * 集合 {@link MySet} 的二分搜索树 {@link BinarySearchTreeSet} 实现
+ * 集合 {@link MySet} 的二分搜索树 {@link BinarySearchTree} 实现
  *
  * @author Jerome Zhu
  * @since 2019.06.23 20:05
  */
 public class BinarySearchTreeSet<E extends Comparable<E>> implements MySet<E> {
-    // 存放容器
+    /**
+     * 存放容器
+     */
     private BinarySearchTree<E> bsTree;
 
     /**
