@@ -1,5 +1,7 @@
 package xin.jerome.study.datastructures.map.impl;
 
+import java.util.ArrayList;
+
 import xin.jerome.study.datastructures.map.MyMap;
 
 /**
@@ -84,22 +86,61 @@ public class BinarySearchTreeMap<K extends Comparable<K>, V> implements MyMap<K,
         } else if (node.key.compareTo(key) < 0) {
             // 当前节点小于 key 去右子树中删除.
             node.right = remove(node.right, key);
-        } else { // 待删除的就是本节点 (最优删除: 用右子树中的最小节点代替当前节点)
-            size--;
-            if (node.left != null) {
-                // 当前节点的右子树不为空,用左子树代替当前节点,并将右子树添加到最右节点
-                Node cur = node.left;
-                while (cur.right != null) {
-                    // 遍历得到左子树的最右节点
-                    cur = cur.right;
-                }
-                cur.right = node.right;
-                return node.left;
-            } else {
-                // 左子树为空, 直接用右子树代替当前节点
-                return node.right;
+        } else {
+            // 待删除的就是本节点 (最优删除: 用右子树中的最小节点代替当前节点)
+            // 待删除节点左子树为空的情况
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                return rightNode;
             }
+
+            // 待删除节点右子树为空的情况
+            if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                return leftNode;
+            }
+
+            // 待删除节点左右子树均不为空的情况
+            // 找到比待删除节点大的最小节点, 即待删除节点右子树的最小节点
+            // 用这个节点顶替待删除节点的位置
+            Node successor = minimum(node.right);
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+
+            node.left = node.right = null;
+
+            return successor;
         }
+        return node;
+    }
+
+    /**
+     * 返回以node为根的二分搜索树的最小值所在的节点
+     */
+    private Node minimum(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+        return minimum(node.left);
+    }
+
+    /**
+     * 删除掉以node为根的二分搜索树中的最小节点 返回删除节点后新的二分搜索树的根
+     */
+    private Node removeMin(Node node) {
+
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
         return node;
     }
 
@@ -180,6 +221,31 @@ public class BinarySearchTreeMap<K extends Comparable<K>, V> implements MyMap<K,
         recursivePreOrder(node.right);
     }
 
+    /**
+     * 判断当前AVL树是否是二分搜索树
+     */
+    public boolean isBST() {
+        ArrayList<K> keys = new ArrayList<>();
+        inOrder(root, keys);
+        for (int i = 1; i < keys.size(); i++) {
+            if (keys.get(i - 1).compareTo(keys.get(i)) > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /** 中序遍历获取所有的key,存入keys中 */
+    private void inOrder(Node root, ArrayList<K> keys) {
+        if (root == null) {
+            return;
+        }
+
+        inOrder(root.left, keys);
+        keys.add(root.key);
+        inOrder(root.right, keys);
+    }
+
     private class Node {
         public K key;
         public V value;
@@ -190,6 +256,12 @@ public class BinarySearchTreeMap<K extends Comparable<K>, V> implements MyMap<K,
             this.value = value;
             this.left = null;
             this.right = null;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("key : %s,left : %s,right : %s", key, left == null ? "null" : left.key,
+                right == null ? "null" : right.key);
         }
     }
 }

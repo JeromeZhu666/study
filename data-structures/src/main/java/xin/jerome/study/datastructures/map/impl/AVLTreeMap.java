@@ -1,8 +1,8 @@
 package xin.jerome.study.datastructures.map.impl;
 
-import java.util.ArrayList;
-
 import xin.jerome.study.datastructures.map.MyMap;
+
+import java.util.ArrayList;
 
 /**
  * 映射 {@link MyMap} 的AVL树的实现
