@@ -32,7 +32,7 @@ public class TestMyMap {
             }
         }
         System.out.println("word length " + word.length());
-        // charMap.remove('j');
+        charMap.remove('d');
         System.out.println(charMap.get('b'));
         System.out.println("word has " + charMap.size() + " char.");
     }

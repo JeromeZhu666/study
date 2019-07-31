@@ -1,8 +1,8 @@
 package xin.jerome.study.datastructures.map.impl;
 
-import xin.jerome.study.datastructures.map.MyMap;
-
 import java.util.ArrayList;
+
+import xin.jerome.study.datastructures.map.MyMap;
 
 /**
  * 映射 {@link MyMap} 的AVL树的实现
@@ -53,6 +53,17 @@ public class AVLTreeMap<K extends Comparable<K>, V> implements MyMap<K, V> {
         }
         // 更新高度值
         node.height = 1 + Math.max(height(node.left), height(node.right));
+        return autoBalance(node);
+    }
+
+    /**
+     * 完成以当前节点为根节点的自平衡
+     * 
+     * @param node
+     *            当前节点
+     * @return 平衡后的根节点
+     */
+    private Node autoBalance(Node node) {
         // 计算平衡因子,判断 AVL 树是否需要重新平衡
         int balanceFactor = getBalanceFactor(node);
         // LL 情况需要右旋转
@@ -130,34 +141,63 @@ public class AVLTreeMap<K extends Comparable<K>, V> implements MyMap<K, V> {
     private Node remove(Node node, K key) {
         // 最小问题 当前节点为null,直接返回
         if (node == null) {
-            return node;
+            return null;
         }
 
         // 递归问题
+        Node returnNode = null;
         if (key.compareTo(node.key) < 0) {
             // 当前节点大于 key 去左子树中删除.
             node.left = remove(node.left, key);
+            returnNode = node;
         } else if (key.compareTo(node.key) > 0) {
             // 当前节点小于 key 去右子树中删除.
             node.right = remove(node.right, key);
+            returnNode = node;
         } else {
             // 待删除的就是本节点 (最优删除: 用右子树中的最小节点代替当前节点)
-            size--;
-            if (node.left != null) {
-                // 当前节点的右子树不为空,用左子树代替当前节点,并将右子树添加到最右节点
-                Node cur = node.left;
-                while (cur.right != null) {
-                    // 遍历得到左子树的最右节点
-                    cur = cur.right;
-                }
-                cur.right = node.right;
-                return node.left;
-            } else {
-                // 左子树为空, 直接用右子树代替当前节点
-                return node.right;
+            // 待删除节点左子树为空的情况
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                returnNode = rightNode;
+            }
+            // 待删除节点右子树为空的情况
+            else if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                returnNode = leftNode;
+            }
+            // 待删除节点左右子树均不为空的情况
+            else {
+                // 找到比待删除节点大的最小节点, 即待删除节点右子树的最小节点
+                // 用这个节点顶替待删除节点的位置
+                Node successor = minimum(node.right);
+                // successor.right = removeMin(node.right);
+                successor.right = remove(node.right, successor.key);
+                successor.left = node.left;
+                node.left = node.right = null;
+                returnNode = successor;
             }
         }
-        return node;
+        if (returnNode == null) {
+            return null;
+        }
+        // 更新高度值
+        returnNode.height = 1 + Math.max(height(returnNode.left), height(returnNode.right));
+        return autoBalance(returnNode);
+    }
+
+    /**
+     * 返回以node为根的二分搜索树的最小值所在的节点
+     */
+    private Node minimum(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+        return minimum(node.left);
     }
 
     @Override
@@ -238,7 +278,7 @@ public class AVLTreeMap<K extends Comparable<K>, V> implements MyMap<K, V> {
     }
 
     /**
-     * 判断当前AVL树是否是平衡二叉树
+     * 判断当前AVL树是否是二分搜索树
      */
     public boolean isBST() {
         ArrayList<K> keys = new ArrayList<>();
