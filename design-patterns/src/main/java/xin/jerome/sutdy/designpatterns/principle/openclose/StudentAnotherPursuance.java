@@ -16,6 +16,9 @@ public class StudentAnotherPursuance extends StudentPursuance {
         this.anotherPursuance = anotherPursuance;
     }
 
+    /**
+     * 获取学生的另一个追求
+     */
     public String getAnotherPursuance() {
         return anotherPursuance;
     }
