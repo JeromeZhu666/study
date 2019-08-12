@@ -1,8 +1,8 @@
 package xin.jerome.study.algorithms.sort;
 
-import org.junit.Test;
-
 import java.util.Arrays;
+
+import org.junit.Test;
 
 /**
  * 排序方法测试类
@@ -14,10 +14,12 @@ public class SortTest {
 
     @Test
     public void testSort() {
-        Integer[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+        Integer[] arr = generateRandomArray(50000, 0, 100000);
         Integer[] arr2 = Arrays.copyOf(arr, arr.length);
-        testSort(new SelectionSort<>(), arr);
-        testSort(new MergeSort<Integer>(), arr2);
+        Integer[] arr3 = Arrays.copyOf(arr, arr.length);
+        testSort(new InsertionSortReformByInsertIndex<>(), arr);
+        testSort(new MergeSort<>(), arr2);
+        testSort(new MergeSortReformByInsertion<>(), arr3);
     }
 
     private void testSort(ISortTest<Integer> sortTest, Integer[] arr) {
@@ -27,4 +29,25 @@ public class SortTest {
         System.out.println(String.format("%s,time:%fs", sortTest.getClass().getSimpleName(), time));
     }
 
+    /**
+     * 生成有n个元素的随机数组,每个元素的随机范围为[rangeL, rangeR]
+     * 
+     * @param n
+     *            数组大小
+     * @param rangeLeft
+     *            数组的元素的左取值范围
+     * @param rangeRight
+     *            数组的元素的右取值范围
+     */
+    private Integer[] generateRandomArray(int n, int rangeLeft, int rangeRight) {
+
+        assert rangeLeft <= rangeRight;
+
+        Integer[] arr = new Integer[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = new Integer((int)(Math.random() * (rangeRight - rangeLeft + 1) + rangeLeft));
+        }
+        return arr;
+    }
 }
