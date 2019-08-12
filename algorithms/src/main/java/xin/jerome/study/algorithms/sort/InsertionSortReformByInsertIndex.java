@@ -14,7 +14,7 @@ public class InsertionSortReformByInsertIndex<T extends Comparable<T>> implement
      * @param arr
      *            待排序的数组
      */
-    public void insertionSortRemould(T[] arr) {
+    public void insertionSortReform(T[] arr) {
 
         for (int i = 0; i < arr.length; i++) {
             // 待插入的元素
@@ -32,6 +32,6 @@ public class InsertionSortReformByInsertIndex<T extends Comparable<T>> implement
 
     @Override
     public void sort(T[] arr) {
-        insertionSortRemould(arr);
+        insertionSortReform(arr);
     }
 }
