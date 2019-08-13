@@ -13,17 +13,19 @@ import org.junit.Test;
 public class SortTest {
 
     @Test
-    public void testSort() {
+    public void testMergeSortAndQuickSort() {
         Integer[] arr1 = generateRandomArray(50000, 0, 100000);
         Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr4 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr5 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr6 = Arrays.copyOf(arr1, arr1.length);
         testSort(new MergeSort<>(), arr1);
         testSort(new MergeSortReformByInsertion<>(), arr2);
         testSort(new QuickSort<>(), arr3);
         testSort(new QuickSortReformByInsertion<>(), arr4);
         testSort(new QuickSortReformByRandomPivot<>(), arr5);
+        testSort(new QuickSortReformByThreeWays<>(), arr6);
     }
 
     @Test
