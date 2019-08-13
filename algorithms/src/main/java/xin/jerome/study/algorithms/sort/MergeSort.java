@@ -50,11 +50,12 @@ public class MergeSort<T extends Comparable<T>> implements ISortTest<T> {
      *            右闭范围
      */
     private void merge(T[] arr, int l, int mid, int r) {
-        // 构造一个临时数组空间存储区间中的数据
+        // 构造一个临时数组空间存储区间中的数据[l,r]
         T[] tempArr = Arrays.copyOfRange(arr, l, r + 1);
         // 记录两侧位置
         int left = l;
         int right = mid + 1;
+        // [l,r]
         for (int i = l; i <= r; i++) {
             if (left > mid) {
                 // 左侧遍历完右侧没有遍历完
@@ -62,7 +63,7 @@ public class MergeSort<T extends Comparable<T>> implements ISortTest<T> {
                 right++;
             } else if (right > r) {
                 // 右侧遍历完左侧没有遍历完
-                arr[i] = arr[left - l];
+                arr[i] = tempArr[left - l];
                 left++;
             } else if (tempArr[left - l].compareTo(tempArr[right - l]) <= 0) {
                 // 两侧都没有遍历完,比较左右区间的值

@@ -89,7 +89,7 @@ public class MergeSortReformByInsertion<T extends Comparable<T>> implements ISor
                 right++;
             } else if (right > r) {
                 // 右侧遍历完左侧没有遍历完
-                arr[i] = arr[left - l];
+                arr[i] = tempArr[left - l];
                 left++;
             } else if (tempArr[left - l].compareTo(tempArr[right - l]) <= 0) {
                 // 两侧都没有遍历完,比较左右区间的值

@@ -1,8 +1,8 @@
 package xin.jerome.study.algorithms.sort;
 
-import java.util.Arrays;
-
 import org.junit.Test;
+
+import java.util.Arrays;
 
 /**
  * 排序方法测试类
