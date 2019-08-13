@@ -1,8 +1,8 @@
 package xin.jerome.study.algorithms.sort;
 
-import org.junit.Test;
-
 import java.util.Arrays;
+
+import org.junit.Test;
 
 /**
  * 排序方法测试类
@@ -17,9 +17,11 @@ public class SortTest {
         Integer[] arr1 = generateRandomArray(50000, 0, 100000);
         Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr4 = Arrays.copyOf(arr1, arr1.length);
         testSort(new MergeSort<>(), arr1);
         testSort(new MergeSortReformByInsertion<>(), arr2);
         testSort(new QuickSort<>(), arr3);
+        testSort(new QuickSortReformByInsertion<>(), arr4);
     }
 
     @Test
@@ -27,9 +29,11 @@ public class SortTest {
         Integer[] arr1 = generateRandomArray(500, 0, 10000);
         Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr4 = Arrays.copyOf(arr1, arr1.length);
         testSort(new SelectionSort<>(), arr1);
         testSort(new InsertionSort<>(), arr2);
         testSort(new InsertionSortReformByInsertIndex<>(), arr3);
+        testSort(new InsertionSortReformByInsertIndex<>(), arr4);
     }
 
     /**
