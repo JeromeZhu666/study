@@ -14,19 +14,38 @@ public class SortTest {
 
     @Test
     public void testSort() {
-        Integer[] arr = generateRandomArray(50000, 0, 100000);
-        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
-        Integer[] arr3 = Arrays.copyOf(arr, arr.length);
-        testSort(new InsertionSortReformByInsertIndex<>(), arr);
-        testSort(new MergeSort<>(), arr2);
-        testSort(new MergeSortReformByInsertion<>(), arr3);
+        Integer[] arr1 = generateRandomArray(50000, 0, 100000);
+        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+        testSort(new MergeSort<>(), arr1);
+        testSort(new MergeSortReformByInsertion<>(), arr2);
+        testSort(new QuickSort<>(), arr3);
     }
 
+    @Test
+    public void testSelectionSortAndInsertionSort() {
+        Integer[] arr1 = generateRandomArray(500, 0, 10000);
+        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+        testSort(new SelectionSort<>(), arr1);
+        testSort(new InsertionSort<>(), arr2);
+        testSort(new InsertionSortReformByInsertIndex<>(), arr3);
+    }
+
+    /**
+     * 测试排序算法对数组的排序,并统计消耗时间以及结果是否有序.
+     * 
+     * @param sortTest
+     *            测试排序类的接口
+     * @param arr
+     *            测试数组
+     */
     private void testSort(ISortTest<Integer> sortTest, Integer[] arr) {
         long startTime = System.nanoTime();
         sortTest.sort(arr);
         Double time = (System.nanoTime() - startTime) / 1000000000.0;
-        System.out.println(String.format("%s,time:%fs", sortTest.getClass().getSimpleName(), time));
+        System.out.println(
+            String.format("%s,time:%fs,isSorted:%s", sortTest.getClass().getSimpleName(), time, isSorted(arr)));
     }
 
     /**
@@ -49,5 +68,21 @@ public class SortTest {
             arr[i] = new Integer((int)(Math.random() * (rangeRight - rangeLeft + 1) + rangeLeft));
         }
         return arr;
+    }
+
+    /**
+     * 验证数组是不是有序的
+     * 
+     * @param arr
+     *            待验证数组
+     * @return 数组有序返回 true , 否则返回false.
+     */
+    private boolean isSorted(Comparable[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i].compareTo(arr[i + 1]) > 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
