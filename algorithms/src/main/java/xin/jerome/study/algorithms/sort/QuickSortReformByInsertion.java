@@ -1,15 +1,17 @@
 package xin.jerome.study.algorithms.sort;
 
 /**
- * 快速排序
- * 
- * 从数列中挑出一个元素,作为"基准".所有比基准值小的元素移动到基准前面,所有比基准值大的元素移动到基准后面.
- * 递归地将小于基准值元素的子序列和大于基准值元素的子序列排序.时间复杂度:O(nlogn)
+ * 快速排序 {@link QuickSort} ,基于未排序序列数据量小时采用插入排序的改造.
  *
  * @author Jerome Zhu
- * @since 2019.08.12 22:11
+ * @since 2019.08.13 20:38
  */
-public class QuickSort<T extends Comparable<T>> implements ISortTest<T> {
+public class QuickSortReformByInsertion<T extends Comparable<T>> implements ISortTest<T> {
+
+    /**
+     * 排序方法转换因子
+     */
+    public static final int SORT_METHOD_TRANSFER_FACTOR = 8;
 
     /**
      * 对数组中[l,r]区间中的元素进行排序.
@@ -22,8 +24,9 @@ public class QuickSort<T extends Comparable<T>> implements ISortTest<T> {
      *            右边界
      */
     public void quickSort(T[] arr, int l, int r) {
-        // 没有数据或有一个元素,默认是有序的
-        if (l >= r) {
+        // 如果数据量小于转换因子,则将[l,r]区间的数据进行插入排序.
+        if (r - l <= SORT_METHOD_TRANSFER_FACTOR) {
+            insertionSort(arr, l, r);
             return;
         }
 
@@ -33,8 +36,29 @@ public class QuickSort<T extends Comparable<T>> implements ISortTest<T> {
     }
 
     /**
+     * 对数组arr且在区间[l,r]中的数据进行插入排序
+     *
+     * @param arr
+     *            source 数组
+     * @param l
+     *            左闭范围
+     * @param r
+     *            右闭范围
+     */
+    private void insertionSort(T[] arr, int l, int r) {
+        for (int i = l; i <= r; i++) {
+            T temp = arr[i];
+            int j = i;
+            for (; j > l && arr[j].compareTo(arr[j - 1]) < 0; j--) {
+                arr[j] = arr[j - 1];
+            }
+            arr[j] = temp;
+        }
+    }
+
+    /**
      * 选择l作为基准,对数组中[l,r]区间中的元素进行分割.
-     * 
+     *
      * @param arr
      *            待排序的数组
      * @param l
@@ -61,7 +85,7 @@ public class QuickSort<T extends Comparable<T>> implements ISortTest<T> {
 
     /**
      * 交换元素
-     * 
+     *
      * @param arr
      *            源数组
      * @param i
