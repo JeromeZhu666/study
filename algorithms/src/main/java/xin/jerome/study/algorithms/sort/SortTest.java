@@ -18,10 +18,12 @@ public class SortTest {
         Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
         Integer[] arr4 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr5 = Arrays.copyOf(arr1, arr1.length);
         testSort(new MergeSort<>(), arr1);
         testSort(new MergeSortReformByInsertion<>(), arr2);
         testSort(new QuickSort<>(), arr3);
         testSort(new QuickSortReformByInsertion<>(), arr4);
+        testSort(new QuickSortReformByRandomPivot<>(), arr5);
     }
 
     @Test

@@ -57,7 +57,7 @@ public class MergeSortReformByInsertion<T extends Comparable<T>> implements ISor
         for (int i = l; i <= r; i++) {
             T temp = arr[i];
             int j = i;
-            for (; j > l && arr[j].compareTo(arr[j - 1]) < 0; j--) {
+            for (; j > l && temp.compareTo(arr[j - 1]) < 0; j--) {
                 arr[j] = arr[j - 1];
             }
             arr[j] = temp;

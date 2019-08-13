@@ -1,7 +1,5 @@
 package xin.jerome.study.algorithms.sort;
 
-import java.util.Random;
-
 /**
  * 快速排序 {@link QuickSort} ,基于随机选择基准的改造.
  *
@@ -50,7 +48,7 @@ public class QuickSortReformByRandomPivot<T extends Comparable<T>> implements IS
         for (int i = l; i <= r; i++) {
             T temp = arr[i];
             int j = i;
-            for (; j > l && arr[j].compareTo(arr[j - 1]) < 0; j--) {
+            for (; j > l && temp.compareTo(arr[j - 1]) < 0; j--) {
                 arr[j] = arr[j - 1];
             }
             arr[j] = temp;
@@ -70,7 +68,8 @@ public class QuickSortReformByRandomPivot<T extends Comparable<T>> implements IS
      */
     private int partition(T[] arr, int l, int r) {
         // 随机选择[l,r]中的元素作为基准元素
-        int partitionIndex = new Random().nextInt() % (r - l + 1) + l;
+        swap(arr, l, (int)(Math.random() * (r - l + 1)) + l);
+        int partitionIndex = l;
         // 基准元素值
         T partitionVal = arr[l];
         // 对区间[l,r]中的元素遍历,维护关系 l == v , [l+1,j] < v , [j+1, i-1]>v .
