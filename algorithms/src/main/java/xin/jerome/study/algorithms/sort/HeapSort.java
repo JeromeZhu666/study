@@ -13,6 +13,7 @@ public class HeapSort<T extends Comparable<T>> implements ISortTest<T> {
 
     private void heapSort(T[] arr) {
         int len = arr.length;
+        // heapify 将数组进行堆化
         for (int i = parent(len - 1); i >= 0; i--) {
             siftDown(arr, i, len);
         }

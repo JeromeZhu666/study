@@ -14,8 +14,12 @@ public class SortTest {
 
     @Test
     public void testHeapSort() {
-        Integer[] arr1 = generateRandomArray(50, 0, 1000);
-        testSort(new HeapSort<>(), arr1);
+        Integer[] arr1 = generateRandomArray(5000, 0, 100000);
+        Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
+        Integer[] arr3 = Arrays.copyOf(arr1, arr1.length);
+        testSort(new MergeSortReformByInsertion<>(), arr1);
+        testSort(new QuickSortReformByThreeWays<>(), arr2);
+        testSort(new HeapSort<>(), arr3);
     }
 
     @Test
