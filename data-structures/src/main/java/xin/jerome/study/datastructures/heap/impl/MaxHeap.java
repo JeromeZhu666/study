@@ -101,8 +101,8 @@ public class MaxHeap<E extends Comparable<E>> implements MyHeap<E> {
     private void siftDown(int index) {
 
         // 当左孩子的索引小于data.size说明当前节点有左孩子
-        while (getLeftChildIndext(index) < data.getSize()) {
-            int maxChildIndex = getLeftChildIndext(index);
+        while (getLeftChildIndex(index) < data.getSize()) {
+            int maxChildIndex = getLeftChildIndex(index);
             if (getRightChildIndex(index) < data.getSize()
                 && data.get(getRightChildIndex(index)).compareTo(data.get(maxChildIndex)) > 0) {
                 maxChildIndex = getRightChildIndex(index);
@@ -151,7 +151,7 @@ public class MaxHeap<E extends Comparable<E>> implements MyHeap<E> {
      *            指定节点的索引
      * @return 左孩子节点的索引
      */
-    private int getLeftChildIndext(int index) {
+    private int getLeftChildIndex(int index) {
         return index * 2 + 1;
     }
 
