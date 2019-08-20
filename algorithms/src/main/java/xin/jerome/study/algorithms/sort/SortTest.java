@@ -13,6 +13,12 @@ import org.junit.Test;
 public class SortTest {
 
     @Test
+    public void testHeapSort() {
+        Integer[] arr1 = generateRandomArray(50, 0, 1000);
+        testSort(new HeapSort<>(), arr1);
+    }
+
+    @Test
     public void testMergeSortAndQuickSort() {
         Integer[] arr1 = generateRandomArray(50000, 0, 100000);
         Integer[] arr2 = Arrays.copyOf(arr1, arr1.length);
