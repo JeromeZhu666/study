@@ -13,6 +13,7 @@
     <module>data-structures</module>
     <module>design-patterns</module>
     <module>algorithms</module>
+    <module>interview</module>
   </modules>
 
   <name>study</name>

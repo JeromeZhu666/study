@@ -1,4 +1,4 @@
-package xin.jerome.study.javabasic.interview;
+package xin.jerome.study.interview.java.lang;
 
 /**
  * equals()方法相关
