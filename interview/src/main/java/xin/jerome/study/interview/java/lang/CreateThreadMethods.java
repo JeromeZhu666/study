@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * 创建线程的有几种方式
  *
- * @author zhu shaojie
+ * @author Jerome Zhu
  * @since 2019年12月10日 17:19
  */
 public class CreateThreadMethods {

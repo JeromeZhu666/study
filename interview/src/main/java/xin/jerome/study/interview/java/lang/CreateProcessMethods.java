@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * 创建进程的方式
  *
- * @author zhu shaojie
+ * @author Jerome Zhu
  * @since 2019年12月10日 18:02
  */
 public class CreateProcessMethods {
