@@ -8,6 +8,8 @@ import org.junit.Test;
  * 单一职责原则 : 规定每个类都应该有一个单一的功能,并且该功能应该由这个类完全封装起来.一个类或者模块应该有且只有一个改变的原因.
  * 即,方法定义的粒度越细,当有需求变更时受到的影响越小.
  *
+ * 举例描述 : 鸟类的移动方式,并不是所有的鸟都是能飞的.例: 鸵鸟和企鹅都是地上跑的;野鸭是在水里游的.
+ *
  * @author Jerome Zhu
  * @since 2019年12月08日 16:28
  */
@@ -31,13 +33,13 @@ public class SingleResponsibilityTest {
     @Test
     public void testSingleResponsibility() {
         // 鹦鹉
-        RemouldBird parrot = new FlyableBird("鹦鹉");
+        AbstractBird parrot = new FlyableBird("鹦鹉");
         parrot.move(); // 鹦鹉: 在天上飞.
         // 企鹅
-        RemouldBird penguin = new RunnableBird("企鹅");
+        AbstractBird penguin = new RunnableBird("企鹅");
         penguin.move(); // 企鹅: 在地上跑.
         // 野鸭
-        RemouldBird mallard = new SwimmableBird("野鸭");
+        AbstractBird mallard = new SwimmableBird("野鸭");
         mallard.move(); // 野鸭: 在水里游.
     }
 }

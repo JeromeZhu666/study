@@ -6,7 +6,7 @@ package xin.jerome.sutdy.designpatterns.principle.singleresponsibility;
  * @author Jerome Zhu
  * @since 2019年12月08日 18:25
  */
-public class RunnableBird extends RemouldBird {
+public class RunnableBird extends AbstractBird {
 
     public RunnableBird(String birdName) {
         super(birdName);

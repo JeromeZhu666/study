@@ -1,15 +1,15 @@
 package xin.jerome.sutdy.designpatterns.principle.singleresponsibility;
 
 /**
- * 改造鸟类
+ * 抽象出鸟类的共性
  *
  * @author Jerome Zhu
  * @since 2019年12月08日 18:11
  */
-public abstract class RemouldBird {
+public abstract class AbstractBird {
     public String birdName;
 
-    public RemouldBird(String birdName) {
+    public AbstractBird(String birdName) {
         this.birdName = birdName;
     }
 
