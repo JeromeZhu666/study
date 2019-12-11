@@ -7,7 +7,12 @@ import org.junit.Test;
 /**
  * 线程执行相关问题
  *   1.运行线程的方式
+ *     1) {@link ThreadExecutionQuestions#testThreadExecutionByImplementsRunnable()}
+ *     2) {@link ThreadExecutionQuestions#testThreadExecutionByThreadSubClass()}
+ *     3) {@link ThreadExecutionQuestions#testThreadExecutionByThreadPoolExecutor()}
  *   2.保证线程的运行顺序 T1 -> T2 -> T3
+ *     1) {@link ThreadExecutionQuestions#testThreadExecutionOrderByJoinOneByOne()}
+ *     2) {@link ThreadExecutionQuestions#testThreadExecutionOrderByThreadLoop()}
  *
  * @author Jerome Zhu
  * @since 2019年12月11日 16:10

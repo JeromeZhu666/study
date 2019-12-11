@@ -8,6 +8,7 @@ import org.junit.Test;
 /**
  * 线程创建问题
  *   1.创建线程的方法
+ *     {@link ThreadCreationQuestions#testCreateThreadMethod()}
  *
  * @author Jerome Zhu
  * @since 2019年12月10日 17:19
