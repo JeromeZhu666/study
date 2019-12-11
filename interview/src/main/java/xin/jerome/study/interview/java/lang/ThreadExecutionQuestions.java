@@ -53,7 +53,7 @@ public class ThreadExecutionQuestions {
     }
 
     /**
-     * 保证线程T1,T2,T3运行顺序为 T1 -> T2 -> T3
+     * 保证线程的运行顺序 : 保证线程T1,T2,T3运行顺序为 T1 -> T2 -> T3
      */
     @Test
     public void testThreadExecutionOrderBefore() throws InterruptedException {

@@ -5,12 +5,16 @@ import org.junit.Test;
 
 /**
  * 进程创建的相关问题
+ *   1.创建线程的方法
  *
  * @author Jerome Zhu
  * @since 2019年12月10日 18:02
  */
 public class ProcessCreationQuestions {
 
+    /**
+     * 创建线程的方法 : 通过 {@link Runtime#exec(String)} 执行
+     */
     @Test
     public void createProcess() {
         Runtime runtime = Runtime.getRuntime();
