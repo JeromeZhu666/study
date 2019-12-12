@@ -18,6 +18,7 @@ public class ThreadStoppingQuestions {
 
     @Test
     public void testHowToStopThread() throws InterruptedException {
+        // 自定义开关来终止线程
         MyRunnable myRunnable = new MyRunnable();
         Thread t1 = new Thread(myRunnable,"T1");
         // 通知线程启动
@@ -27,7 +28,7 @@ public class ThreadStoppingQuestions {
         // 线程必须执行完成
         t1.join();
 
-
+        // 通过设置线程的终止状态来终止线程
         Thread t2 = new Thread(()-> {
             if(!Thread.currentThread().isInterrupted()) {
                 action();
@@ -39,6 +40,12 @@ public class ThreadStoppingQuestions {
         t2.interrupt();
         // 线程必须执行完成
         t2.join();
+
+        // 通过抛异常来终止线程
+        Thread t3 = new Thread(()-> {
+            throw new RuntimeException("终止线程");
+        },"T3");
+        t3.start();
     }
 
     /** 带有自定义开关的 {@link Runnable} 接口的实现 */
