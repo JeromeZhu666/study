@@ -8,6 +8,8 @@ import org.junit.Test;
  *     {@link ThreadStoppingQuestions#testHowToStopThread()}
  *   2.为什么会废弃 {@link Thread#stop()} 方法
  *     {@link ThreadStoppingQuestions#whyIsStopMethodDeprecated()}
+ *   3.Thread类的 interrupt()、isInterrupted()和interrupted() 方法的区别
+ *     {@link ThreadStoppingQuestions#explainInterrupt()}
  *
  * @author Jerome Zhu
  * @since 2019年12月11日 17:46
@@ -49,26 +51,37 @@ public class ThreadStoppingQuestions {
 
     /**
      * 为什么会废弃 {@link Thread#stop()} 方法 :
-     *   因为 stop 方法 有安全问题,停止线程会使它解锁它已锁定的所有监视器,导致状态不一致的问题.
+     *   防止死锁和状态不一致,因为 stop 方法 有安全问题,停止线程会使它解锁它已锁定的所有监视器,导致状态不一致的问题.
      *   <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/concurrency/threadPrimitiveDeprecation.html">
      *       Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?</a>
      */
     @Test
     public void whyIsStopMethodDeprecated() {}
 
-
+    /**
+     * Thread类的 interrupt()、isInterrupted()和interrupted() 方法的区别
+     *   1.interrupt() 设置中断状态为true.
+     *   2.isInterrupted() 测试当前线程的当前中断状态, 返回结果后不清除 interrupt 的状态.
+     *   3.interrupted() 测试当前线程的当前中断状态, 返回结果后清除 interrupt 的状态.
+     */
     @Test
     public void explainInterrupt() {
-        Thread t1 = new Thread(ThreadStoppingQuestions::action,"T1");
-        // 返回中断状态,不清除状态;如果没设置过 interrupted 返回 false.
-//        System.out.println(t1.isInterrupted());
-        // 设置中断状态
+        Thread t1 = new Thread(()-> {
+            // java.lang.Thread.interrupted() 测试当前线程的当前中断状态, 返回结果后清除 interrupt 的状态.
+            System.out.printf("线程[%s]中断状态: %s \n", Thread.currentThread().getName(), Thread.interrupted());
+            if(!Thread.currentThread().isInterrupted()) {
+                action();
+                System.out.printf("线程[%s]中断状态: false \n", Thread.currentThread().getName());
+            }
+        },"T1");
+        // java.lang.Thread.isInterrupted() 测试当前线程的当前中断状态, 返回结果后不清除 interrupt 的状态
+        System.out.printf("线程[%s]中断状态: %s \n", t1.getName(), t1.isInterrupted());
+        // 通知线程启动
+        t1.start();
+        // java.lang.Thread.interrupt 设置中断状态为true
         t1.interrupt();
-        System.out.println(t1.isInterrupted());
-
-        System.out.println(Thread.interrupted());
-
-        System.out.println(t1.isInterrupted());
+        // java.lang.Thread.isInterrupted() 测试当前线程的当前中断状态, 返回结果后不清除 interrupt 的状态
+        System.out.printf("线程[%s]中断状态: %s \n", t1.getName(), t1.isInterrupted());
     }
 
 
