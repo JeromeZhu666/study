@@ -71,6 +71,7 @@ public class ThreadStoppingQuestions {
             System.out.printf("线程[%s]中断状态: %s \n", Thread.currentThread().getName(), Thread.interrupted());
             if(!Thread.currentThread().isInterrupted()) {
                 action();
+                // 只有中断状态为false时才会执行到这里.
                 System.out.printf("线程[%s]中断状态: false \n", Thread.currentThread().getName());
             }
         },"T1");
