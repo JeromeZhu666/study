@@ -1,6 +1,4 @@
-package xin.jerome.study.interview.java.lang;
-
-import static java.lang.System.out;
+package xin.jerome.study.interview.java.lang.thread;
 
 import java.lang.Thread.State;
 import java.lang.management.ManagementFactory;

@@ -1,8 +1,7 @@
-package xin.jerome.study.interview.java.lang;
+package xin.jerome.study.interview.java.lang.thread;
 
 import java.security.AccessControlContext;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+
 import org.junit.Test;
 
 /**

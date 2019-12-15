@@ -1,4 +1,4 @@
-package xin.jerome.study.interview.java.lang;
+package xin.jerome.study.interview.java.lang.thread;
 
 import java.io.IOException;
 import org.junit.Test;

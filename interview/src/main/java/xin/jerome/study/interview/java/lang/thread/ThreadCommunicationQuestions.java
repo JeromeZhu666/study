@@ -1,4 +1,4 @@
-package xin.jerome.study.interview.java.lang;
+package xin.jerome.study.interview.java.lang.thread;
 
 /**
  * 线程通讯问题

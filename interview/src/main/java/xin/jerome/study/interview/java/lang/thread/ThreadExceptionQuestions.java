@@ -1,4 +1,4 @@
-package xin.jerome.study.interview.java.lang;
+package xin.jerome.study.interview.java.lang.thread;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
