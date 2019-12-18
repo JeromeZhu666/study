@@ -66,9 +66,9 @@ public class ThreadSafeCollectionQuestions {
     @Test
     public void testImplementTheadSafeCollectionInJava9() {
         // 返回的是 ImmutableCollection 对象
-        List<Integer> integerList = List.of(1, 2, 3, 4, 5);
-        Set<Integer> set = Set.of(1, 2, 3, 4, 5);
-        Map<String,Integer> integerMap = Map.of("key", 1);
+//        List<Integer> integerList = List.of(1, 2, 3, 4, 5);
+//        Set<Integer> set = Set.of(1, 2, 3, 4, 5);
+//        Map<String,Integer> integerMap = Map.of("key", 1);
     }
 
 }
