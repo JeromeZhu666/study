@@ -2,7 +2,6 @@ package xin.jerome.study.interview.java.util;
 
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Hashtable.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import org.junit.Test;
 
@@ -28,7 +27,7 @@ public class ThreadSafeMapQuestions {
      *                 key 可以为空 {@link HashMap#hash(java.lang.Object)}, key为空时, 放回的hash值为0.
      *      ConcurrentHashMap key 和 value 都不可以为空,方法强制校验.
      *                 {@link ConcurrentHashMap#putVal(java.lang.Object, java.lang.Object, boolean)}
-     *   2) Hashtable           -> 数组 + 链表实现 {@link Entry}
+     *   2) Hashtable           -> 数组 + 链表实现 {@link Hashtable.Entry}
      *      HashMap             -> Java8 之后是数组 + 链表 + 红黑树 实现 , 当阈值 >= 8时 链表转红黑树; <= 6时 红黑树转链表
      *      ConcurrentHashMap   -> 和 HashMap 一样的
      */
