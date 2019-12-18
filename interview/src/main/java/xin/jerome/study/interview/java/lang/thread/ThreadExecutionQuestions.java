@@ -116,6 +116,10 @@ public class ThreadExecutionQuestions {
         t3.start();
         // 线程自转,利用 join() 方法的底层实现方法实现
         while (t3.isAlive()){
+            // Java Thread 对象和实际 JVM 执行的 OS Thread 不是相同对象
+            // JVM Thread 回调 Java Thread.run() 方法，
+            // 同时 Thread 提供一些 native 方法来获取 JVM Thread 状态
+            // 当 JVM Thread 执行后，自动就 notify() 了
             synchronized (t3){
                 t3.wait();
             }
