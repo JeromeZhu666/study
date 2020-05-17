@@ -2,6 +2,8 @@ package xin.jerome.study.datastructures.stack;
 
 /**
  * 自定义 stack 接口
+ * 栈(堆栈): 是允许在同一端进行插入和删除操作的特殊线性表.
+ * 栈也叫做先进后出(FILO-First in last out)的线性表.
  *
  * @author Jerome Zhu
  * @since 2018.10.23 20:27
