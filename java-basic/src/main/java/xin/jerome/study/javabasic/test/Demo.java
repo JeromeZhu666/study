@@ -1,9 +1,28 @@
 package xin.jerome.study.javabasic.test;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * 米拓世纪初试邀请
  */
 public class Demo{
+
+    @Test
+    public void test() {
+        List<String> strs = Arrays.asList("planAndAssign","break","execute");
+        Collections.sort(strs, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.startsWith("p") ? -1 : o2.startsWith("p") ? 1 : o1.compareTo(o2);
+            }
+        });
+        System.out.println(Arrays.toString(strs.toArray()));
+    }
 
     public static void main(String[] args) {
         System.out.println("============test1=============");
