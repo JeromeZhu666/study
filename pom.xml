@@ -9,10 +9,9 @@
   <packaging>pom</packaging>
   <version>1.0</version>
   <modules>
+    <module>data-structures-and-algorithms</module>
     <module>java-basic</module>
-    <module>data-structures</module>
     <module>design-patterns</module>
-    <module>algorithms</module>
     <module>interview</module>
   </modules>
 
